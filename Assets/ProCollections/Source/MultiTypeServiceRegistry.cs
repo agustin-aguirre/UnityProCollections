@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace ProCollections
 {
-	public class MultiTypeServiceRegistry : ServiceRegistry, IMultiTypeServiceRegistry
+	public class MultiTypeServiceRegistry : MultiServiceRegistry, IMultiTypeServiceRegistry
 	{
 		public void Register(object service)
 		{

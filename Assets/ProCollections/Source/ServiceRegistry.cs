@@ -1,44 +1,30 @@
 ﻿using ProCollections.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 
 namespace ProCollections
 {
 	public class ServiceRegistry : IServiceRegistry
 	{
-		protected readonly Dictionary<Type, List<object>> registry = new();
+		protected readonly Dictionary<Type, object> registry = new();
 
 		public ServiceRegistry() { }
-		public ServiceRegistry(Dictionary<Type, List<object>> services) => registry = services;
+		public ServiceRegistry(Dictionary<Type, object> services) => registry = services;
 
 
-		public void Register<T>(T service) where T : class
-		{
-			if (!registry.ContainsKey(typeof(T)))
-				registry[typeof(T)] = new List<object>();
-			registry[typeof(T)].Add(service);
-		}
+		public void Register<T>(T service) where T : class => registry[typeof(T)] = service;
 
-		public IReadOnlyList<T> Get<T>() where T : class => registry.TryGetValue(typeof(T), out List<object> services) ? services.Cast<T>().ToList() : null;
+		public T Get<T>() where T : class => registry.TryGetValue(typeof(T), out object service) ? service as T : null;
 
 		public bool Remove<T>() where T : class => registry.Remove(typeof(T));
 
-		public bool Remove<T>(T service) where T : class
-		{
-			if (!registry.ContainsKey(typeof(T))) return false;
+		public bool Remove<T>(T service) where T : class => registry.Remove(service.GetType());
 
-			var targetList = registry[typeof(T)];
-			if (!targetList.Remove(service)) return false;
-			if (targetList.Count == 0) Remove<T>();
-			return true;
-		}
-
-		public bool TryGet<T>(out IReadOnlyList<T> services) where T : class
+		public bool TryGet<T>(out T service) where T : class
 		{
-			services = Get<T>();
-			return services is not null;
+			service = Get<T>();
+			return service is not null;
 		}
 	}
 }

@@ -1,14 +1,8 @@
-﻿using System.Collections.Generic;
-
-
-namespace ProCollections.Interfaces
+﻿namespace ProCollections.Interfaces
 {
-	public interface IServiceRegistry
+	public interface IServiceRegistry : IServiceRegistrator
 	{
-		IReadOnlyList<T> Get<T>() where T : class;
-		void Register<T>(T service) where T : class;
-		bool Remove<T>() where T : class;
-		bool Remove<T>(T service) where T : class;
-		bool TryGet<T>(out IReadOnlyList<T> services) where T : class;
+		T Get<T>() where T : class;
+		bool TryGet<T>(out T services) where T : class;
 	}
 }

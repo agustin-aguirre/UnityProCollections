@@ -1,6 +1,6 @@
 ﻿namespace ProCollections.Interfaces
 {
-	public interface IMultiTypeServiceRegistry : IServiceRegistry
+	public interface IMultiTypeServiceRegistry : IMultiServiceRegistry
 	{
 		void Register(object service);
 		bool Remove(object service);

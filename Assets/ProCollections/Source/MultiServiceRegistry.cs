@@ -14,12 +14,14 @@ namespace ProCollections
 		public MultiServiceRegistry(Dictionary<Type, List<object>> services) => registry = services;
 
 
-		public void Register<T>(T service) where T : class
+		public void Register<T>(object service) where T : class
 		{
 			if (!registry.ContainsKey(typeof(T)))
 				registry[typeof(T)] = new List<object>();
 			registry[typeof(T)].Add(service);
 		}
+
+		public void Register<T>(T service) where T : class => Register<T>((object)service);
 
 		public IReadOnlyList<T> Get<T>() where T : class => registry.TryGetValue(typeof(T), out List<object> services) ? services.Cast<T>().ToList() : null;
 

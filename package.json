@@ -1,0 +1,16 @@
+{
+  "name": "com.agustin-aguirre.unityprocollection",
+  "version": "1.0.0",
+  "displayName": "Unity Pro Collections",
+  "description": "A group of colllections that should simplify somethings.",
+  "unity": "2019.1",
+  "unityRelease": "0b5",
+ "keywords": [
+    "collections",
+    "utilities"
+  ],
+  "author": {
+    "name": "Agustín Aguirre",
+    "email": "agus.aguirre.pro@gmail.com"
+  }
+}

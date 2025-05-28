@@ -1,6 +1,6 @@
 {
-    "name": "ProCollections",
-    "rootNamespace": "ProCollections",
+    "name": "UnityProCollections",
+    "rootNamespace": "UnityProCollections",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
